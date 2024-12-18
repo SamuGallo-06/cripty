@@ -1,0 +1,4 @@
+bcrypt
+base64
+PyQt5
+configparser
