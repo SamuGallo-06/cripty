@@ -43,7 +43,7 @@ class SetupThread(QThread):
         elif(self.keyType == "32 Byte"):
             self.key = get_random_bytes(32)
             
-        self.key = base64.b64encode(self.key)
+        self.key = base64.b64encode(self.key).decode("utf-8")
         
     def WriteSettings(self):
         with open(".config", "w") as file:
@@ -63,4 +63,8 @@ class SetupThread(QThread):
         if(not(os.path.exists(self.CRIPTY_DIR))):
             os.mkdir(self.CRIPTY_DIR)
             
-        os.mkdir(self.CRIPTY_DIR + "/" + self.vaultName)
+        if(not os.path.exists(self.CRIPTY_DIR + "/" + self.vaultName)):
+            os.mkdir(self.CRIPTY_DIR + "/" + self.vaultName)
+        
+        with open(self.CRIPTY_DIR + "/" + self.vaultName + "/encrypted_files.cfg", "w"):
+            pass

@@ -27,7 +27,7 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;Current files in vault&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="currentFilesComboBox">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -76,11 +76,11 @@
      <string>Decrypt File</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="vaultNameLabel">
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>10</y>
+      <y>20</y>
       <width>441</width>
       <height>31</height>
      </rect>
