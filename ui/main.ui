@@ -103,35 +103,122 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionNewVault"/>
+    <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuVault">
     <property name="title">
      <string>Vault</string>
     </property>
-    <addaction name="actionNewVault"/>
     <addaction name="actionCloseVault"/>
+    <addaction name="separator"/>
+    <addaction name="actionRemove_vault"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionCripty_Help"/>
+    <addaction name="actionAbout"/>
+    <addaction name="actionGitHub_repo"/>
+    <addaction name="separator"/>
+    <addaction name="actionReport_Issue"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionAdd_Files"/>
+    <addaction name="actionExport_Vault"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuVault"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionQuit">
-   <property name="text">
-    <string>Quit</string>
+  <action name="actionCloseVault">
+   <property name="icon">
+    <iconset theme="dialog-password"/>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+Q</string>
+   <property name="text">
+    <string>Lock Vault</string>
+   </property>
+  </action>
+  <action name="actionRemove_vault">
+   <property name="text">
+    <string>Remove vault</string>
+   </property>
+  </action>
+  <action name="actionAdd_Files">
+   <property name="icon">
+    <iconset theme="document-new"/>
+   </property>
+   <property name="text">
+    <string>Add Files</string>
+   </property>
+  </action>
+  <action name="actionExport_Vault">
+   <property name="icon">
+    <iconset theme="document-save"/>
+   </property>
+   <property name="text">
+    <string>Export Vault</string>
+   </property>
+  </action>
+  <action name="actionCripty_Help">
+   <property name="icon">
+    <iconset theme="help-browser"/>
+   </property>
+   <property name="text">
+    <string>Cripty Help</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset theme="help-about"/>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionGitHub_repo">
+   <property name="text">
+    <string>GitHub Repo</string>
+   </property>
+  </action>
+  <action name="actionReport_Issue">
+   <property name="icon">
+    <iconset theme="dialog-error"/>
+   </property>
+   <property name="text">
+    <string>Report Issue</string>
    </property>
   </action>
   <action name="actionNewVault">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::FolderNew"/>
+   </property>
    <property name="text">
-    <string>New</string>
+    <string>New Vault</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a new Vault</string>
    </property>
   </action>
-  <action name="actionCloseVault">
+  <action name="actionQuit">
+   <property name="icon">
+    <iconset theme="application-exit"/>
+   </property>
    <property name="text">
-    <string>Close</string>
+    <string>Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quit program</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
   </action>
  </widget>

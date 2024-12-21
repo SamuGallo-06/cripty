@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>409</width>
+    <height>324</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -24,16 +24,6 @@
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Cripty Login&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="vaultNameInput">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>140</y>
-     <width>341</width>
-     <height>24</height>
-    </rect>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -67,7 +57,7 @@
     <rect>
      <x>30</x>
      <y>200</y>
-     <width>341</width>
+     <width>351</width>
      <height>24</height>
     </rect>
    </property>
@@ -75,14 +65,43 @@
   <widget class="QPushButton" name="loginButton">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>279</x>
      <y>250</y>
-     <width>80</width>
+     <width>101</width>
      <height>24</height>
     </rect>
    </property>
    <property name="text">
     <string>Login</string>
+   </property>
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::DialogPassword"/>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="vaultNameInput">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>140</y>
+     <width>351</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="newVaultButton">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>250</y>
+     <width>101</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>New Vault</string>
+   </property>
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::ListAdd"/>
    </property>
   </widget>
  </widget>

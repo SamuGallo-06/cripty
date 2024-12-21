@@ -3,18 +3,26 @@ from PyQt5.QtWidgets import(
 )
 from PyQt5.uic import loadUi
 from PyQt5.QtGui import QIcon
-import os, sys
+import os, sys, configparser
 
-from setupWizard import CriptySetupWizard
-from login import CriptyLoginWindow
+from windows.setupWizard import CriptySetupWizard
+from windows.login import CriptyLoginWindow
 
     
 if __name__ == "__main__":
     #Setup Application
     app = QApplication(sys.argv)
+    
+    #check configuration file
     if(os.path.exists(".config")):
-        window = CriptyLoginWindow()
+        cfg = configparser.ConfigParser()
+        cfg.read(".config")
+        if(cfg.sections()):
+            window = CriptyLoginWindow()
+        else:
+            window = CriptySetupWizard()
     else:
         window = CriptySetupWizard()
-        window.show()
+    
+    window.show()
     app.exec_()

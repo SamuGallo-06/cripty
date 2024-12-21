@@ -2,3 +2,5 @@ __pycache__/
 .config
 .psswd
 .keys/
+threads/__pycache__
+windows/__pycache__

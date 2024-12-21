@@ -8,6 +8,8 @@ from PyQt5.QtGui import QIcon
 import configparser
 import os
 import base64
+from windows.setupWizard import CriptySetupWizard
+from windows.removeVaultWizard import CriptyRemoveVaultWizard
 
 class CriptyMainWindow(QMainWindow):
     
@@ -29,6 +31,7 @@ class CriptyMainWindow(QMainWindow):
         self.VAULT_PATH = self.CRIPTY_DIR + "/" + self.vaultName
         self.vaultData = configparser.ConfigParser()
         self.vaultData.read(self.VAULT_PATH + "/files.ini")
+        self.loginWindow = None
         
     def SetupUi(self):
         self.setWindowIcon(QIcon("resources/icon.png"))
@@ -39,6 +42,9 @@ class CriptyMainWindow(QMainWindow):
         self.deleteFileButton.clicked.connect(self.OnRemoveFileClicked)
         self.currentFilesComboBox.clear()
         self.currentFilesComboBox.addItems(self.currentFiles)
+        self.actionNewVault.triggered.connect(self.OnNewVaultClicked)
+        self.actionCloseVault.triggered.connect(self.OnCloseVaultClicked)
+        self.actionRemove_vault.triggered.connect(self.OnRemoveVault)
         self.statusbar.showMessage("Ready!")
         
     def SetupVault(self):
@@ -67,9 +73,9 @@ class CriptyMainWindow(QMainWindow):
         self.currentFilesComboBox.addItems(self.currentFiles)
         
     def AddFile(self):
-        self.newFilePath = QFileDialog.getOpenFileName(
+        newFiles = QFileDialog.getOpenFileNames(
             self,
-            "Select file to add", 
+            "Select files to add", 
             self.HOME, 
             "All Files(*)"
         )[0]
@@ -77,7 +83,9 @@ class CriptyMainWindow(QMainWindow):
         self.vaultKey = self.cfg.get(self.vaultName, "vault-key")
         self.vaultKey = base64.b64decode(self.vaultKey)
         
-        self.encryptFile(self.newFilePath, self.vaultKey)
+        for file in newFiles:
+            self.encryptFile(file, self.vaultKey)
+        
         self.vaultKey = None
         
     def DecryptFile(self):
@@ -163,7 +171,7 @@ class CriptyMainWindow(QMainWindow):
         
         print(f"File decriptato: {decryptedFilePath}")
         
-    def remove_pair_from_text(self, file_path, original_file):
+    def removeFileFromConfig(self, file_path, original_file):
         try:
             with open(file_path, 'r') as f:
                 lines = f.readlines()
@@ -210,7 +218,7 @@ class CriptyMainWindow(QMainWindow):
                     "Unable to find vault configuration file"
                 )
                 
-            self.remove_pair_from_text(encrypted_files_path, selected_file)
+            self.removeFileFromConfig(encrypted_files_path, selected_file)
 
             self.currentFiles = []
             try:
@@ -231,3 +239,28 @@ class CriptyMainWindow(QMainWindow):
     def save_pair_text(self, file_path, original_file, encrypted_file):
         with open(file_path, 'a') as f:
             f.write(f"{original_file},{encrypted_file}\n")
+            
+    def OnNewVaultClicked(self):
+        self.setupWizard = CriptySetupWizard()
+        self.setupWizard.show()
+        self.close()
+        
+    def OnCloseVaultClicked(self):
+        #Warning
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+        msg.setWindowTitle("Close Vault")
+        msg.setText("Are you sure you want to close the Vault?\nYou will need to log in again to access your files.")
+        msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        result = msg.exec_()
+
+        if result == QMessageBox.Yes:
+            from windows.login import CriptyLoginWindow
+            self.loginWindow = CriptyLoginWindow()
+            self.loginWindow.show()
+            self.close()
+            
+    def OnRemoveVault(self):
+        self.removeVaultWindow = CriptyRemoveVaultWizard()
+        self.removeVaultWindow.show()
+        self.close()
